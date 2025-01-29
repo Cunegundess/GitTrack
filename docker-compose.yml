@@ -8,14 +8,30 @@ services:
     volumes:
       - ./backend/src:/app/src
     networks:
-      - backend-network
+      - app-network
     develop:
       watch:
         - action: rebuild
           path: ./backend/
           target: /app/
 
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    develop:
+      watch:
+        - action: rebuild
+          path: ./frontend/
+          target: /app/
 
 networks:
-  backend-network:
+  app-network:
     driver: bridge
