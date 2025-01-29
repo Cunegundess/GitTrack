@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/src:/app/src
+    networks:
+      - backend-network
+    develop:
+      watch:
+        - action: rebuild
+          path: ./backend/
+          target: /app/
+
+
+networks:
+  backend-network:
+    driver: bridge
