@@ -1,0 +1,16 @@
+<div class="dashboard">
+  <h2>GitHub Dashboard</h2>
+  <input [(ngModel)]="username" placeholder="Digite o usuário do GitHub..."/>
+  <button (click)="fetchEvents()">Buscar Eventos</button>
+
+  <div *ngIf="loading" class="loading">Carregando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <ul *ngIf="events.length > 0">
+    <li *ngFor="let event of events">
+      <strong>{{ event.type }}</strong> em <a [href]="'https://github.com/' + event.repo.name" target="_blank">
+      {{ event.repo.name }}
+    </a> - {{ event.created_at | date:'short' }}
+    </li>
+  </ul>
+</div>
