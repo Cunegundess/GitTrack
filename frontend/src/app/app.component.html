@@ -1,1 +1,30 @@
-<app-dashboard></app-dashboard>
+<main>
+    <section class="left-section">
+        <div class="header">
+            <h1 class="title">{{ title }}</h1>
+            <p class="slogan">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate repellat doloremque necessitatibus saepe, vitae perferendis quod maxime porro, ratione inventore aperiam quaerat ab rerum quas odio atque dolorem maiores pariatur.</p>
+        </div>
+
+        <div class="dashboard">
+            <input [(ngModel)]="username" placeholder="Search a Github Account..."/>
+            <button (click)="fetchEvents()">Search</button>
+
+            <div *ngIf="loading" class="loading">Loading...</div>
+            <div *ngIf="error" class="error">{{ error }}</div>
+
+            <ul *ngIf="events.length > 0">
+                <li *ngFor="let event of events">
+                    <strong>{{ event.type }}</strong> em <a [href]="'https://github.com/' + event.repo.name" target="_blank">
+                    {{ event.repo.name }}
+                    </a> - {{ event.created_at | date:'short' }}
+                </li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p class="footer-text">
+        Developed by <a href="https://github.com/Cunegundess" target="_blank">Cunegundess</a>
+    </p>
+</footer>
