@@ -14,7 +14,7 @@ export class GithubService {
       const response = await Axios.get(`${this.API_URL}/${username}`);
       return response.data;
     } catch (error) {
-      console.error("Erro ao buscar eventos:", error)
+      console.error("Error:", error)
       throw error;
     }
   }

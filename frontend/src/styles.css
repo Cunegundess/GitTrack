@@ -9,7 +9,7 @@ body::before {
   height: 500px;
   background: url('../public/github-mark/github-mark-white.svg') no-repeat center;
   background-size: contain;
-  opacity: 0.5; 
+  opacity: 0.5;
   transform: translate(-50%, -50%);
   z-index: -1;
 }
@@ -18,11 +18,5 @@ body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #002246, #00032c);
   color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+  min-height: 90vh;
 }

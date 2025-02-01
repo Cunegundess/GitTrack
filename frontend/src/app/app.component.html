@@ -1,30 +1,42 @@
 <main>
     <section class="left-section">
         <div class="header">
-            <h1 class="title">{{ title }}</h1>
-            <p class="slogan">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate repellat doloremque necessitatibus saepe, vitae perferendis quod maxime porro, ratione inventore aperiam quaerat ab rerum quas odio atque dolorem maiores pariatur.</p>
+          <h1 class="title">{{ title }}</h1>
+          <p class="slogan">"Explore the coding journey of any GitHub user with just a search"</p>
         </div>
 
-        <div class="dashboard">
+        <div class="search_input">
             <input [(ngModel)]="username" placeholder="Search a Github Account..."/>
             <button (click)="fetchEvents()">Search</button>
 
             <div *ngIf="loading" class="loading">Loading...</div>
             <div *ngIf="error" class="error">{{ error }}</div>
-
-            <ul *ngIf="events.length > 0">
-                <li *ngFor="let event of events">
-                    <strong>{{ event.type }}</strong> em <a [href]="'https://github.com/' + event.repo.name" target="_blank">
-                    {{ event.repo.name }}
-                    </a> - {{ event.created_at | date:'short' }}
-                </li>
-            </ul>
         </div>
     </section>
 </main>
 
+<section class="events" *ngIf="groupedEvents.length > 0">
+  <div class="events_list">
+    <ng-container *ngFor="let group of groupedEvents">
+      <ng-container *ngFor="let event of group.events">
+        <div class="events_card" *ngIf="event.type === 'PushEvent' && event.payload?.commits">
+          <strong>{{ group.repoName }}</strong>
+          <p>{{ event.type }} | {{ event.created_at | date:'medium' }}</p>
+          <ul>
+            <li *ngFor="let commit of event.payload.commits">
+              <a [href]="'https://github.com/' + group.repoName + '/commit/' + commit.sha" target="_blank">
+                {{ commit.message }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</section>
+
 <footer>
     <p class="footer-text">
-        Developed by <a href="https://github.com/Cunegundess" target="_blank">Cunegundess</a>
+        Developed by <a href="https://lucascunegundesportfolio.netlify.app/" target="_blank">{{ myUsername }}</a>
     </p>
 </footer>
