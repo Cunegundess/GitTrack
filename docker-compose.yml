@@ -26,11 +26,6 @@ services:
       - /app/node_modules
     networks:
       - app-network
-    develop:
-      watch:
-        - action: rebuild
-          path: ./frontend/
-          target: /app/
 
 networks:
   app-network:
