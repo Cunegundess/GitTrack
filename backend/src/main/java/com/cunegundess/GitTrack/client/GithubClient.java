@@ -1,6 +1,10 @@
 package com.cunegundess.GitTrack.client;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -25,21 +29,14 @@ public class GithubClient {
         return new HttpEntity<>(headers);
     }
 
-    // public String getUserRepos(String username) {
-    //     String url = githubApiUrl + "/users/" + username + "/repos";
-    //     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, createHeaders(), String.class);
-    //     return response.getBody();
-    // }
-
-    public String getUserEvents(String username) {
+    public List<Map<String, Object>> getUserEvents(String username) {
         String url = githubApiUrl + "/users/" + username + "/events";
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, createHeaders(), String.class);
+        ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
+            url, 
+            HttpMethod.GET, 
+            createHeaders(), 
+            new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+            );
         return response.getBody();
     }
-
-    // public String getCommits(String owner, String repo) {
-    //     String url = githubApiUrl + "/repos/" + owner + "/" + repo + "/commits";
-    //     ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, createHeaders(), String.class);
-    //     return response.getBody();
-    // }
 }
