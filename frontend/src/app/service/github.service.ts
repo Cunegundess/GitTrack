@@ -11,7 +11,7 @@ export class GithubService {
 
   async getUserEvents(username: string): Promise<any> {
     try {
-      const response = await Axios.get(`${this.API_URL}/${username}`);
+      const response = await Axios.get(`${this.API_URL}/${username}/events`);
       return response.data;
     } catch (error) {
       console.error("Error:", error)
