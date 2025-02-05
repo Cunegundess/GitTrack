@@ -2,7 +2,6 @@ package com.cunegundess.GitTrack.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +25,13 @@ public class GithubController {
     }
 
     @GetMapping("{username}/repos")
-    public Set<String> getRepos(@PathVariable String username) {
+    public Map<String, String> getRepos(@PathVariable String username) {
         return githubService.getUserRepos(username);
+    }
+
+    @GetMapping("{username}/repos/commits")
+    public Map<String, Object> getRepoCommits(@PathVariable String username) {
+        return githubService.getRepoCommits(username);
     }
 
 }
