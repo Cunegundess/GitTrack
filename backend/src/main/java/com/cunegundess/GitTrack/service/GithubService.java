@@ -58,8 +58,16 @@ public class GithubService {
                         
                         if (payload.containsKey("commits") && payload.get("commits") instanceof List) {
                             List<Map<String, Object>> commits = (List<Map<String, Object>>) payload.get("commits");
+                            Map<String, Object> commitsArray = new HashMap<>();
+
+                            for (Map<String, Object> commit : commits) {
+                                commitsArray.put("sha", commit.get("sha"));
+                                commitsArray.put("message", commit.get("message"));
+                                commitsArray.put("url", commit.get("url"));
+                            }
+
                             repoCommits.putIfAbsent(repoName, new ArrayList<>());
-                            ((List<Object>) repoCommits.get(repoName)).addAll(commits);
+                            ((List<Map<String, Object>>) repoCommits.get(repoName)).add(commitsArray);
                         }
                     }
                 }
