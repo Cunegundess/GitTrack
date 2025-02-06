@@ -74,13 +74,13 @@ The following endpoints are available for tracking GitHub user activities:
 - Integrate with GitHub API
 - Create user interface for tracking activities
 - Create getUserRepos method in GithubService class
+- Create getUserCommits method in GithubService class
 - Create a Dockerfile for containerization
 
 ### In Progress
-- Create getUserCommits method in GithubService class
+- Add unit tests for service layer
 
 ### Planned
-- Add unit tests for service layer
 - Implement CI/CD
 - Refactor the frontend fetching to use the new endpoints
     - Update the service layer to handle new endpoints
