@@ -1,5 +1,7 @@
 # GitTrack
 
+<img src="./images/frontend.png" />
+
 GitTrack is full stack application with Spring Boot and Angular that consumes the GitHub API to track user activities such as commits, repositories created, and other interactions. 
 
 ## Technologies Used
