@@ -63,7 +63,7 @@ The following endpoints are available for tracking GitHub user activities:
     - **Description:** Retrieves a list of repositories for a GitHub user.
 
 - **Get User Commits**
-    - **URL:** `/{username}/commits`
+    - **URL:** `/{username}/repos/commits`
     - **Method:** `GET`
     - **Description:** Retrieves a list of commits made by a GitHub user.
 
